@@ -47,14 +47,11 @@
 
     @media screen and (min-height: 701px) {
         #footer {
-            height: 100px;
-            height: calc(50px + env(safe-area-inset-bottom));
+            height: 60px;
+            height: calc(60px + env(safe-area-inset-bottom));
 
             .link {
                 height: 40px;
-                margin-top: 1px;
-                height: calc(50px + env(safe-area-inset-bottom));
-                background-color: red;
             }
         }
     }
@@ -66,6 +63,7 @@
             
             .link {
                 background-color: blue;
+                height: 40px;
             }
         }
     }
