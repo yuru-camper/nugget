@@ -59,10 +59,7 @@
     @media screen and (max-height: 750px) {
         #footer {
             height: 50px;
-
-            .link {
-                margin-top: 3px;
-            }
+            height: calc(50px + env(safe-area-inset-bottom));
         }
     }
 
