@@ -28,11 +28,9 @@
             display: none;
         }
 
-/*
         #router-view {
             width: 1500px;
         }
-*/
     }
 
     @media screen and (max-width: 480px) {
