@@ -1,8 +1,6 @@
 <template>
     <div id="app">
         <Header class="pc"></Header>
-        {{width}} <br>
-        {{height}}
         <router-view id="router-view" />
         <Footer class="sp"></Footer>
     </div>
@@ -54,25 +52,6 @@
         components: {
             Header,
             Footer
-        },
-        data() {
-            return {
-                width: window.innerWidth,
-                height: window.innerHeight
-            }
-        },
-        methods: {
-            handleResize: function() {
-                // resizeのたびにこいつが発火するので、ここでやりたいことをやる
-                this.width = window.innerWidth;
-                this.height = window.innerHeight;
-            }
-        },
-        mounted: function () {
-            window.addEventListener('resize', this.handleResize)
-        },
-        beforeDestroy: function () {
-            window.removeEventListener('resize', this.handleResize)
         }
     }
 
