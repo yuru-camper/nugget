@@ -45,7 +45,7 @@
         }
     }
 
-    @media screen and (min-height: 751px) {
+    @media screen and (min-height: 701px) {
         #footer {
             height: 100px;
             height: calc(50px + env(safe-area-inset-bottom));
@@ -59,7 +59,7 @@
         }
     }
 
-    @media screen and (max-height: 750px) {
+    @media screen and (max-height: 700px) {
         #footer {
             height: 50px;
             height: calc(50px + env(safe-area-inset-bottom));
