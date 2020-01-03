@@ -47,24 +47,14 @@
 
     @media screen and (min-height: 701px) {
         #footer {
-            height: 60px;
-            height: calc(60px + env(safe-area-inset-bottom));
-
-            .link {
-                height: 40px;
-            }
+            height: 55px;
+            height: calc(55px + env(safe-area-inset-bottom));
         }
     }
 
     @media screen and (max-height: 700px) {
         #footer {
             height: 50px;
-            height: calc(50px + env(safe-area-inset-bottom));
-            
-            .link {
-                background-color: blue;
-                height: 40px;
-            }
         }
     }
 
