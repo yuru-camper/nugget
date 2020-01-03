@@ -44,7 +44,7 @@
 
 
 <style lang="scss">
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 480px), (min-resolution: 2dppx) {
         .slide-wrapper {
             width: 100vw;
             margin-bottom: 10px;

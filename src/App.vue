@@ -21,7 +21,7 @@
         margin-bottom: 80px;
     }
 
-    @media screen and (min-width: 376px) {
+    @media screen and (min-width: 480px) {
         .sp {
             display: none;
         }
@@ -31,7 +31,7 @@
         }
     }
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 480px), (min-resolution: 2dppx) {
         .pc {
             display: none;
         }
