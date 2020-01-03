@@ -47,7 +47,7 @@
 
     @media screen and (min-height: 800px) {
         #footer {
-            height: 60px;
+            height: 100px;
 
             .link {
                 height: 40px;
