@@ -45,7 +45,7 @@
         }
     }
 
-    @media screen and (max-aspect-ratio: 9/16) {
+    @media screen and (min-height: 800px) {
         #footer {
             height: 60px;
 
@@ -56,7 +56,7 @@
         }
     }
 
-    @media screen and (min-aspect-ratio: 8/16) {
+    @media screen and (max-height: 799px) {
         #footer {
             height: 50px;
 
