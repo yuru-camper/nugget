@@ -48,6 +48,7 @@
     @media screen and (min-height: 751px) {
         #footer {
             height: 100px;
+            height: calc(50px + env(safe-area-inset-bottom));
 
             .link {
                 height: 40px;
@@ -60,6 +61,10 @@
         #footer {
             height: 50px;
             height: calc(50px + env(safe-area-inset-bottom));
+            
+            .link {
+                
+            }
         }
     }
 
