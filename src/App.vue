@@ -26,12 +26,14 @@
             display: none;
         }
 
+/*
         #router-view {
             width: 1500px;
         }
+*/
     }
 
-    @media screen and (max-width: 480px), (min-resolution: 2dppx) {
+    @media screen and (max-width: 480px) {
         .pc {
             display: none;
         }
