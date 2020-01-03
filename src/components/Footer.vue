@@ -53,6 +53,8 @@
             .link {
                 height: 40px;
                 margin-top: 1px;
+                height: calc(50px + env(safe-area-inset-bottom));
+                background-color: red;
             }
         }
     }
@@ -63,7 +65,7 @@
             height: calc(50px + env(safe-area-inset-bottom));
             
             .link {
-                
+                background-color: blue;
             }
         }
     }
