@@ -1,32 +1,58 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <Header class="pc"></Header>
+        <router-view id="router-view" />
+        <Footer class="sp"></Footer>
     </div>
-    <router-view/>
-  </div>
 </template>
 
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+    #app {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: #2c3e50;
+        letter-spacing: 0.015em;
+    }
 
-#nav {
-  padding: 30px;
-}
+    #router-view {
+        margin: auto;
+        margin-bottom: 80px;
+    }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+    @media screen and (min-width: 376px) {
+        .sp {
+            display: none;
+        }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+        #router-view {
+            width: 1500px;
+        }
+    }
+
+    @media screen and (max-width: 375px) {
+        .pc {
+            display: none;
+        }
+
+        .container {
+            width: 100vw;
+        }
+    }
+
 </style>
+
+
+<script>
+    import Header from '@/components/Header.vue'
+    import Footer from '@/components/Footer.vue'
+
+    export default {
+        components: {
+            Header,
+            Footer
+        }
+    }
+
+</script>

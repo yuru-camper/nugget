@@ -1,0 +1,97 @@
+<template>
+    <div id="footer">
+        <div class="link">
+            <router-link to="/">
+                <IconButton :icon="home.icon" :name="home.name"></IconButton>
+            </router-link>
+            <router-link to="/search">
+                <IconButton :icon="search.icon" :name="search.name"></IconButton>
+            </router-link>
+            <router-link to="/mypage">
+                <IconButton :icon="mypage.icon" :name="mypage.name"></IconButton>
+            </router-link>
+        </div>
+    </div>
+</template>
+
+
+<style lang="scss">
+    #footer {
+        width: 100%;
+        background-color: #fafafa;
+        position: fixed;
+        bottom: 0;
+        border-top: solid thin #ccc;
+        text-align: center;
+
+        a {
+            margin: 0 10px;
+            font-weight: bold;
+            color: #888;
+            text-decoration: none;
+
+            &.router-link-exact-active {
+                color: #4d4d4d;
+            }
+            
+            .icon-button {
+                width: 20vw;
+                font-size: 10px;
+                
+                .mdi {
+                    margin-bottom: -5px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-aspect-ratio: 9/16) {
+        #footer {
+            height: 60px;
+
+            .link {
+                height: 40px;
+                margin-top: 1px;
+            }
+        }
+    }
+
+    @media screen and (min-aspect-ratio: 8/16) {
+        #footer {
+            height: 50px;
+
+            .link {
+                margin-top: 3px;
+            }
+        }
+    }
+
+</style>
+
+
+<script>
+    import IconButton from '@/components/IconButton.vue'
+
+    export default {
+        components: {
+            IconButton
+        },
+        data() {
+            return {
+                home: {
+                    icon: 'mdi-home',
+                    name: 'ホーム'
+                },
+                search: {
+                    icon: 'mdi-magnify',
+                    name: 'さがす'
+                },
+                mypage: {
+                    icon: 'mdi-account',
+                    name: 'マイページ'
+                }
+            }
+        }
+    }
+
+</script>
