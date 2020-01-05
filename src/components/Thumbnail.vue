@@ -1,9 +1,11 @@
 <template>
     <div class="thumbnail">
-        <img :src="src">
-        <div class="title">
-            {{ title }}
-        </div>
+        <router-link to="/">
+            <img :src="src">
+            <div class="title">
+                {{ title }}
+            </div>
+        </router-link>
     </div>
 </template>
 
