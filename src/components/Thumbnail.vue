@@ -25,6 +25,8 @@
 
     .thumbnail .title {
         font-size: 15px;
+        text-decoration: none;
+        color: #4d4d4d;
     }
 
 </style>
