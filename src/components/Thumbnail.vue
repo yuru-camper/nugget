@@ -10,25 +10,27 @@
 </template>
 
 
-<style>
+<style lang="scss">
     .thumbnail {
         width: 150px;
         float: left;
-    }
+        
+        a {
+            text-decoration: none;
+            
+            img {
+                width: 150px;
+                height: 200px;
+                border-radius: 5px;
+                object-fit: cover;
+            }
 
-    .thumbnail img {
-        width: 150px;
-        height: 200px;
-        border-radius: 5px;
-        object-fit: cover;
+            .title {
+                font-size: 15px;
+                color: #4d4d4d;
+            }
+        } 
     }
-
-    .thumbnail .title {
-        font-size: 15px;
-        text-decoration: none;
-        color: #4d4d4d;
-    }
-
 </style>
 
 
