@@ -4,11 +4,9 @@
             <div class="slide-wrapper">
                 <video src="../assets/猫は液体なのか.mp4" controls></video>
                 <div class="icon-wrapper">
-                    <IconButton :icon="dislike.icon"></IconButton>
                     <IconButton :icon="like.icon" :value="like.value"></IconButton>
                     <IconButton :icon="share.icon" :name="share.name"></IconButton>
                     <IconButton :icon="comments.icon" :value="comments.value"></IconButton>
-                    <IconButton :icon="others.icon"></IconButton>
                 </div>
             </div>
             <div class="slide-info-wrapper">
@@ -167,9 +165,6 @@
         },
         data() {
             return {
-                dislike: {
-                    icon: 'mdi-thumb-down-outline'
-                },
                 like: {
                     icon: 'mdi-thumb-up-outline',
                     value: 1234
@@ -181,9 +176,6 @@
                 comments: {
                     icon: 'mdi-comment-processing-outline',
                     value: 1234
-                },
-                others: {
-                    icon: 'mdi-dots-vertical'
                 },
                 isntFollow: true,
                 tbName: 'フォローする',

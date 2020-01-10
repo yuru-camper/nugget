@@ -1,13 +1,11 @@
 <template>
     <div class="home-sp container">
         <div class="slide-wrapper">
-            <video src="../assets/猫は液体なのか.mp4" controls></video>
+            <SlideShow></SlideShow>
             <div class="icon-wrapper">
-                <IconButton :icon="dislike.icon"></IconButton>
                 <IconButton :icon="like.icon" :value="like.value"></IconButton>
                 <IconButton :icon="share.icon" :name="share.name"></IconButton>
                 <IconButton :icon="comments.icon" :value="comments.value"></IconButton>
-                <IconButton :icon="others.icon"></IconButton>
             </div>
         </div>
         <div class="slide-info-wrapper">
@@ -62,15 +60,15 @@
                 color: #888;
 
                 .icon-button {
-                    width: 70px;
+                    width: 25vw;
                     vertical-align: top;
 
-                    &:nth-child(1) {
-                        padding-top: 3px;
-                    }
-
-                    &:nth-child(3) .mdi {
+                    &:nth-child(2) .mdi {
                         margin-bottom: -2px;
+                    }
+                    
+                    &:nth-child(3) {
+                        margin-top: 1px;
                     }
                 }
             }
@@ -192,6 +190,7 @@
     import AvatarImage from '@/components/AvatarImage.vue'
     import Thumbnail from '@/components/Thumbnail.vue'
     import InputBar from '@/components/InputBar.vue'
+    import SlideShow from '@/components/SlideShow.vue'
 
     export default {
         name: 'home_sp',
@@ -200,13 +199,12 @@
             TextButton,
             AvatarImage,
             Thumbnail,
-            InputBar
+            InputBar,
+            SlideShow
         },
         data() {
             return {
-                dislike: {
-                    icon: 'mdi-thumb-down-outline'
-                },
+                isPlay: true,
                 like: {
                     icon: 'mdi-thumb-up-outline',
                     value: 1234
@@ -218,9 +216,6 @@
                 comments: {
                     icon: 'mdi-comment-processing-outline',
                     value: 1234
-                },
-                others: {
-                    icon: 'mdi-dots-vertical'
                 },
                 slideInfo: {
                     title: '猫は液体なのか？物理学の盲点',
@@ -261,7 +256,20 @@
                 } else {
                     this.fbText = 'フォロー中'
                 }
-            }
+            },
+//            togglePlay: function() {
+//                let video = $("#video").get(0)
+//                
+//                if (this.isPlay) {
+//                    video.pause()
+//                    video.controls = true
+//                } else {
+//                    video.play()
+//                    video.controls = false
+//                }
+//                
+//                this.isPlay != this.isPlay
+//            }
         }
     }
 

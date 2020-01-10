@@ -11,21 +11,29 @@
                 タグが選択されていません
             </div>
         </div>
-        <div class="category-bar">
-            <div class="category">
-                おすすめ
-            </div>
-            <div class="category">
-                人気
-            </div>
-            <div class="category">
-                急上昇
-            </div>
-        </div>
         <div class="thumbnail-wrapper">
-            <div class="thumbnails">
-                <div v-for="(t, i) in thumbSrc" :key="i" class="item">
-                    <Thumbnail :src="t.src" :title="t.title"></Thumbnail>
+            <div class="recommend">
+                <div class="category">おすすめ</div>
+                <div class="thumbnails">
+                    <div v-for="(t, i) in thumbSrc" :key="i" class="item">
+                        <Thumbnail :src="t.src" :title="t.title"></Thumbnail>
+                    </div>
+                </div>
+            </div>
+            <div class="popular">
+                <div class="category">人気</div>
+                <div class="thumbnails">
+                    <div v-for="(t, i) in thumbSrc" :key="i" class="item">
+                        <Thumbnail :src="t.src" :title="t.title"></Thumbnail>
+                    </div>
+                </div>
+            </div>
+            <div class="trending">
+                <div class="category">急上昇</div>
+                <div class="thumbnails">
+                    <div v-for="(t, i) in thumbSrc" :key="i" class="item">
+                        <Thumbnail :src="t.src" :title="t.title"></Thumbnail>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,13 +61,13 @@
             .tag {
                 margin: 0 2px;
                 display: inline-block;
-                
+
                 &:first-child {
                     margin-left: calc(3vw - 2px);
                 }
             }
         }
-        
+
         .no-tags {
             margin: 5px 0 0 3vw;
             font-size: 12px;
@@ -67,17 +75,16 @@
         }
 
     }
-
-    .category-bar {
-        border-bottom: solid thin #ccc;
-        display: flex;
-        padding: 2px 0;
-
-        .category {
-            width: (100vw / 3);
-            display: inline-block;
-            text-align: center;
-            font-size: 15px;
+    
+    .thumbnail-wrapper {
+        
+        > div {
+            margin-top: 20px;
+            
+            .category {
+                margin-left: 3vw;
+                margin-bottom: 5px;
+            }
         }
     }
 
