@@ -24,7 +24,7 @@
             left: 0;
             height: calc(100vw * 4 / 3 - 23vw);
             width: 100vw;
-            background-color: rgba(50, 50, 50, 0.1);
+            background: linear-gradient(rgba(50, 50, 50, 0.1), rgba(50, 50, 50, 0));
             display: flex;
             align-items: center;
             justify-content: center;
