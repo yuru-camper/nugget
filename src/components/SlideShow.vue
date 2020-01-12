@@ -1,6 +1,8 @@
 <template>
     <div class="video">
-        <video src="../assets/猫は液体なのか.mp4" v-toggleplay="play" controls playsinline webkit-playsinline autoplay muted></video>
+        <transition name="slide">
+                <video :src="src" :key="keyValue" v-toggleplay="play" controls playsinline webkit-playsinline autoplay muted></video>
+        </transition>
         <div class="overlay" v-show="!play">
             <IconButton icon="mdi-play"></IconButton>
         </div>
@@ -13,9 +15,24 @@
     .video {
         position: relative;
         
+/*
+        .slide-enter-active {
+            transition: transform 1s;
+        }
+
+        .slide-enter {
+            transform: translateX(110vw);
+        }
+
+        .slide-leave-active {
+            transform: translateX(-100vw);
+            transition: transform 1s;
+            z-index: -101;
+        }
+*/
+        
         video {
             display: block;
-            z-index: -100;
         }
         
         .overlay {
@@ -24,7 +41,7 @@
             left: 0;
             height: calc(100vw * 4 / 3 - 23vw);
             width: 100vw;
-            background: linear-gradient(rgba(50, 50, 50, 0.1), rgba(50, 50, 50, 0));
+            background: linear-gradient(rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 0));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -56,6 +73,16 @@
         components: {
             IconButton
         },
+        props: {
+            src: {
+                type: String,
+                require: false
+            },
+            keyValue: {
+                type: Number,
+                require: false
+            }
+        },
         data() {
             return {
                 play: true
@@ -64,11 +91,6 @@
         directives: {
             toggleplay(el, binding) {
                 binding.value ? el.play() : el.pause();
-            }
-        },
-        computed: {
-            btnstate(){
-                return this.play ? "■" : "▸";
             }
         }
     }

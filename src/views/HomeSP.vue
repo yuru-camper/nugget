@@ -1,12 +1,13 @@
 <template>
     <div class="home-sp container">
         <div class="slide-wrapper">
-            <SlideShow></SlideShow>
+            <SlideShow :src="slideSrc[slideCount%2]"></SlideShow>
             <div class="icon-wrapper">
-                <IconButton :icon="like.icon" :value="like.value"></IconButton>
+                <IconButton :icon="like.icon" :value="like.value" ></IconButton>
                 <IconButton :icon="share.icon" :name="share.name"></IconButton>
                 <IconButton :icon="comments.icon" :value="comments.value"></IconButton>
             </div>
+            <button @click="slideCount++">a</button>
         </div>
         <div class="slide-info-wrapper">
             <div class="title">{{ slideInfo.title }}</div>
@@ -51,6 +52,7 @@
 
             video {
                 width: 100vw;
+                height: calc(100vw * 4 / 3);
             }
 
             .icon-wrapper {
@@ -204,7 +206,11 @@
         },
         data() {
             return {
-                isPlay: true,
+                slideCount: 0,
+                slideSrc: [
+                    require('../assets/猫は液体なのか.mp4'),
+                    require('../assets/動画.mp4')
+                ],
                 like: {
                     icon: 'mdi-thumb-up-outline',
                     value: 1234
@@ -256,20 +262,7 @@
                 } else {
                     this.fbText = 'フォロー中'
                 }
-            },
-//            togglePlay: function() {
-//                let video = $("#video").get(0)
-//                
-//                if (this.isPlay) {
-//                    video.pause()
-//                    video.controls = true
-//                } else {
-//                    video.play()
-//                    video.controls = false
-//                }
-//                
-//                this.isPlay != this.isPlay
-//            }
+            }
         }
     }
 
