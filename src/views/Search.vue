@@ -97,7 +97,7 @@
     import Chip from '@/components/Chip.vue'
 
     export default {
-        name: 'home_sp',
+        name: 'search',
         components: {
             Thumbnail,
             InputBar,
