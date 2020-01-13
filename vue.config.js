@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: '/nugget',
+    publicPath: './',
     outputDir: 'docs',
     filenameHashing: false,
     productionSourceMap: false,
