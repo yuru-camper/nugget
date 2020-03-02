@@ -8,12 +8,16 @@
                 </router-link>
             </div>
             <div class="middle">
-                <div class="accont-name">のび太さんのエッジ</div>
-                <div class="user-id">@nobitasedge</div>
+                <div class="user-name">
+                    {{ userName }}
+                </div>
+                <div class="user-id">
+                    @{{ userID }}
+                </div>
             </div>
             <div class="bottom">
                 <div class="bio">
-                    プログラミングとかの入門書って絶対入門じゃないよね。「素人質問で申し訳ないのですが」と同じだよね
+                    {{ bio }}
                 </div>
                 <IconButton icon="mdi-chevron-down"></IconButton>
             </div>
@@ -107,6 +111,13 @@
             AvatarImage,
             TextButton,
             IconButton
+        },
+        data() {
+            return {
+                userName: 'のび太さんのエッジ',
+                userID: 'nobitasedge',
+                bio: 'プログラミングとかの入門書って絶対入門じゃないよね。「素人質問で申し訳ないのですが」と同じだよねああああああああああああああああああああああああああああああああああああああああああああああああ'
+            }
         }
     }
 
