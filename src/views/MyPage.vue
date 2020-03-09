@@ -35,17 +35,17 @@
 <style lang="scss">
     .my-page {
         .user-info {
-            padding: 50px 3vw 0;
+            padding: 15vw 5vw 0;
             background-color: #fafafa;
             
             .top {
-                height: 80px;
-                margin-bottom: 10px;
+                height: 22vw;
+                margin-bottom: 3vw;
                 display: flex;
                 align-items: center;
                 
                 .avatar-image {
-                    width: 80px;
+                    width: 22vw;
                 }
                 
                 a {
@@ -53,21 +53,22 @@
                     color: #888;
                     
                     .text-button {
-                        padding: 4px 20px;
-                        font-size: 12px;
+                        padding: 1vw 5vw;
+                        font-size: 3.4vw;
                     }
                 }
             }
             
             .middle {
-                margin-bottom: 10px;
+                margin-bottom: 3vw;
                 
                 .user-name {
-                    font-size: 17px;
+                    font-size: 5vw;
+                    margin-bottom: 0.2vw;
                 }
                 
                 .user-id {
-                    font-size: 12px;
+                    font-size: 3.4vw;
                     color: #888888;
                 }
             }
@@ -77,7 +78,7 @@
                 
                 .bio {
                     text-align: left;
-                    font-size: 13px;
+                    font-size: 3.6vw;
                 }
                 
                 .icon-button {

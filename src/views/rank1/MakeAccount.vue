@@ -65,7 +65,6 @@
 
         .contents {
             margin: 10vw 3vw 0;
-            font-size: 12px;
 
             .content {
                 width: 100%;

@@ -43,14 +43,18 @@
 
 <style lang="scss">
     .search-wrapper {
-        height: 60px;
-        padding: 15px 0;
+        padding: 7vw 0 3vw;
         background-color: #FAFAFA;
         border-bottom: solid thin #ccc;
 
         .input-bar {
             width: 310px;
             margin-left: 3vw;
+            
+            input {
+                padding: 3vw;
+                width: calc(100% - 3vw * 2);
+            }
         }
 
         .tags {
@@ -59,7 +63,7 @@
             display: flex;
 
             .tag {
-                margin: 0 2px;
+                margin-left: 2px;
                 display: inline-block;
 
                 &:first-child {

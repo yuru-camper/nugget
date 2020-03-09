@@ -43,7 +43,7 @@
 
 
 <style lang="scss">
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 767px) {
         .slide-wrapper {
             width: 100vw;
             margin-bottom: 10px;
@@ -151,7 +151,14 @@
             
             .input-bar {
                 width: 310px;
-                margin: 0 auto 4vw;
+                margin: 0 auto 7vw;
+                
+                input {
+                    padding: 3vw;
+                    width: calc(100% - 3vw * 2);
+                    background: none;
+                    border: solid thin $border;
+                }
             }
             
             .comment {
