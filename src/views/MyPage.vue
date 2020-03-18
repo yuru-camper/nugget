@@ -23,10 +23,10 @@
             </div>
         </div>
         <div class="switch-bar">
-            <div @click="toNotifications">通知</div>
-            <div @click="toNageta">投稿</div>
-            <div @click="toGenius">ジーニアス</div>
-            <div @click="toHistory">履歴</div>
+            <div @click="toNotifications" :class="{'show': showContents==='notifications'}">通知</div>
+            <div @click="toNageta" :class="{'show': showContents==='nageta'}">投稿</div>
+            <div @click="toGenius" :class="{'show': showContents==='genius'}">ジーニアス</div>
+            <div @click="toHistory" :class="{'show': showContents==='history'}">履歴</div>
         </div>
         <div class="contents ntf-wrapper" v-if="showContents==='notifications'">
             <div class="ntf" v-for="(n, i) in notifications" :key="i">
@@ -117,6 +117,11 @@
             justify-content: space-evenly;
             border-bottom: solid thin #ccc;
             border-top: solid thin #ccc;
+            
+            .show {
+                color: $normal-color;
+                font-weight: 400;
+            }
         }
         
         .contents {
@@ -164,11 +169,6 @@
             
             &.thumbnail-wrapper {
                 padding: 5vw 0;
-
-                .wrapper-name {
-                    font-size: 15px;
-                    margin: 0 0 3vw 3vw;
-                }
 
                 .thumbnails {
                     overflow-x: scroll;

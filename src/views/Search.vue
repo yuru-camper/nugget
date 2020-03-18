@@ -1,7 +1,7 @@
 <template>
     <div class="search">
         <div class="search-wrapper">
-            <InputBar placeholder="検索"></InputBar>
+            <InputBar placeholder="検索" name="keywords"></InputBar>
             <div class="tags">
                 <div v-for="(name, i) in choicedTags" :key="i" class="tag">
                     <Chip :name="name"></Chip>
@@ -109,10 +109,10 @@
         },
         data() {
             return {
+                keywords: '',
                 choicedTags: [
                     '量子力学', 'シュレディンガー方程式', 'クーパー対', 'aaaaaaaaaaaa'
                 ],
-                test: [],
                 thumbSrc: [{
                         src: 'https://cdn.vuetifyjs.com/images/cards/store.jpg',
                         title: 'ここにはスライドのタイトルが入ります'

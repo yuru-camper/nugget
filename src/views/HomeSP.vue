@@ -1,19 +1,18 @@
 <template>
     <div class="home-sp container">
         <div class="slide-wrapper">
-            <VideoShow :src="slideSrc[slideCount%2]"></VideoShow>
+            <VideoShow :src="info[count%2].src"></VideoShow>
             <div class="icon-wrapper">
-                <IconButton :icon="like.icon" :value="like.value" ></IconButton>
-                <IconButton :icon="share.icon" :name="share.name"></IconButton>
-                <IconButton :icon="comments.icon" :value="comments.value"></IconButton>
+                <IconButton class="like" :icon="like.icon" :value="info[count%2].n_likes" @click="clickEval"></IconButton>
+                <IconButton class="comment" :icon="comments.icon" :value="info[count%2].n_comments"></IconButton>
+                <IconButton class="share" :icon="share.icon" :name="share.name"></IconButton>
             </div>
-            <button @click="slideCount++">a</button>
         </div>
         <div class="slide-info-wrapper">
-            <div class="title">{{ slideInfo.title }}</div>
+            <div class="title">{{ info[count].title }}</div>
             <div class="account-info">
-                <AvatarImage :src="slideInfo.nagenusiImage"></AvatarImage>
-                <div class="account-name">{{ slideInfo.nagenusiName }}</div>
+                <AvatarImage :src="info[count].image"></AvatarImage>
+                <div class="account-name">{{ info[count].name }}</div>
                 <TextButton :class="{'with-color': isntFollow}" @tbClick='toggleFollow' :name="fbText"></TextButton>
             </div>
         </div>
@@ -27,7 +26,7 @@
         </div>
         <div class="comment-wrapper">
             <div class="wrapper-name">コメント</div>
-            <InputBar placeholder="コメントを投稿"></InputBar>
+            <InputBar placeholder="コメントを投稿" name="comment"></InputBar>
             <div class="comment" v-for="(ci, i) in commentInfo" :key="i">
                 <div class="left">
                     <AvatarImage :src="ci.commentatorImage"></AvatarImage>
@@ -51,21 +50,20 @@
             text-align: center;
 
             .icon-wrapper {
-                font-size: 12px;
-                height: 60px;
-                margin-top: 12px;
+                font-size: 3.4vw;
+                margin: 3.4vw 0 2vw;
                 color: #888;
 
                 .icon-button {
                     width: 25vw;
                     vertical-align: top;
 
-                    &:nth-child(2) .mdi {
-                        margin-bottom: -2px;
+                    &.share .mdi {
+                        margin-bottom: -0.6vw;
                     }
                     
-                    &:nth-child(3) {
-                        margin-top: 1px;
+                    &.comment {
+                        margin-top: 0.1vw;
                     }
                 }
             }
@@ -208,27 +206,16 @@
         },
         data() {
             return {
-                slideCount: 0,
-                slideSrc: [
-                    require('../assets/猫は液体なのか.mp4'),
-                    require('../assets/動画.mp4')
-                ],
+                info: this.$store.state.homeSlides,
                 like: {
-                    icon: 'mdi-thumb-up-outline',
-                    value: 1234
+                    icon: 'mdi-thumb-up-outline'
                 },
                 share: {
                     icon: 'mdi-link',
                     name: '共有'
                 },
                 comments: {
-                    icon: 'mdi-comment-processing-outline',
-                    value: 1234
-                },
-                slideInfo: {
-                    title: '猫は液体なのか？物理学の盲点',
-                    nagenusiImage: 'https://cdn.vuetifyjs.com/images/john.jpg',
-                    nagenusiName: '働きすぎたT細胞'
+                    icon: 'mdi-comment-processing-outline'
                 },
                 isntFollow: true,
                 fbText: 'フォローする',
@@ -255,8 +242,13 @@
                 ]
             }
         },
+        computed: {
+            count() {
+                return this.$store.state.slideCount
+            }
+        },
         methods: {
-            toggleFollow: function() {
+            toggleFollow() {
                 this.isntFollow = !this.isntFollow
 
                 if (this.isntFollow) {
