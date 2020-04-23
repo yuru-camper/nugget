@@ -156,6 +156,7 @@
                     width: calc(100% - 3vw * 2);
                     background: none;
                     border: solid thin $border;
+                    -webkit-appearance: none;
                 }
             }
             
@@ -237,7 +238,7 @@
                     {
                         commentatorImage: "https://cdn.vuetifyjs.com/images/john.jpg",
                         commentatorName: '食べられそうなラー油',
-                        comment: '辛いそうで辛くない、ちょっと辛いコメント'
+                        comment: '辛そうで辛くない、ちょっと辛いコメント'
                     }
                 ]
             }
