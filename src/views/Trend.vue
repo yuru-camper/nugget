@@ -3,11 +3,9 @@
         <div class="search-wrapper">
             <InputBar placeholder="検索" name="keywords"></InputBar>
             <div class="categories">
-                <div v-for="(name, i) in categories" :key="i" @click="clickCategory(name)">
-                    <div class="category">
-                        <div class="item" :class="{'choiced': nowCategory === name}">
-                            {{ name }}
-                        </div>
+                <div class="category" v-for="(name, i) in categories" :key="i" @click="clickCategory(name)">
+                    <div class="item" :class="{'choiced': nowCategory === name}">
+                        {{ name }}
                     </div>
                 </div>
             </div>
@@ -98,7 +96,7 @@
             }
 
             .tags {
-                margin: 0 0 0 6vw;
+                margin: 0 3vw 0 6vw;
                 overflow-x: scroll;
                 display: flex;
                 flex-wrap: wrap;
