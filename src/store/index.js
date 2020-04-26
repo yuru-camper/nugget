@@ -7,13 +7,15 @@ export default new Vuex.Store({
     state: {
         userInfo: {
             log_in: false,
-            display_name: ''
+            display_name: '',
+            id: ''
         },
         keywords: '',
         comment: '',
         slideCount: 0,
         homeSlides: [
             {
+                slideID: '',
                 src: require('../assets/猫は液体なのか.mp4'),
                 title: '猫は液体なのか？物理学の盲点',
                 image: 'https://cdn.vuetifyjs.com/images/john.jpg',
@@ -27,6 +29,7 @@ export default new Vuex.Store({
                 }
             },
             {
+                slideID: '',
                 src: require('../assets/動画.mp4'),
                 title: '0は自然数ということにしたい',
                 image: 'https://cdn.vuetifyjs.com/images/john.jpg',
@@ -40,7 +43,15 @@ export default new Vuex.Store({
                 }
             },
         ],
-        searchTag: ''
+        searchTag: '',
+        searchFlag: false,
+        comments: [
+            {
+                image: '',
+                name: '',
+                comment: ''
+            }
+        ]
     },
     mutations: {
         update_keywords(state, keywords) {
@@ -60,6 +71,13 @@ export default new Vuex.Store({
         },
         searchByTag(state, clickedTag) {
             state.searchTag = clickedTag
+        },
+        cancelSearch(state) {
+            state.keywords = ''
+            state.searchFlag = false
+        },
+        willSearch(state) {
+            state.searchFlag = true
         }
     },
     actions: {},

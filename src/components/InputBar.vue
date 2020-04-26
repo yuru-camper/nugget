@@ -1,6 +1,6 @@
 <template>
     <div class="input-bar">
-        <input type="text" :placeholder="placeholder" v-model="inputValue" @change="update">
+        <input type="text" :placeholder="placeholder" v-model="inputValue" @input="update">
     </div>
 </template>
 
