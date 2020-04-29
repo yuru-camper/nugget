@@ -1,26 +1,99 @@
 <template>
     <div class="trend">
-        <TrandNormal v-if="!$store.state.searchFlag"></TrandNormal>
+        <div class="search-wrapper" :class="{'search': search_flag}">
+            <div class="head">
+                <input type="text" class="input-keywords" placeholder="キーワードで検索" @click="click_search" v-model="keywords" @input="input_keyword">
+                <div class="cancel" @click="clickCancel" v-if="search_flag">
+                    キャンセル
+                </div>
+            </div>
+        </div>
+        <TrendNormal v-if="!search_flag"></TrendNormal>
         <SearchModal v-else></SearchModal>
     </div>
 </template>
 
 
 <style lang="scss">
-    
+    .trend {
+        .search-wrapper {
+            padding-top: 5vw;
+            background-color: #FAFAFA;
+            
+            .head {
+                display: flex;
+                align-items: center;
+                
+                .input-keywords {
+                    display: block;
+                    width: 65vw;
+                    margin-left: 3vw;
+                    padding: 3vw;
+                    border: none;
+                    border-radius: 2.5vw;
+                    background: #f0f0f0;
+                    font-size: 3.6vw;
+                    color: $normal-color;
+
+                    &::placeholder {
+                        font-size: 3.6vw;
+                        color: $light-color
+                    }
+
+                    &[type="text"]:focus {
+                        border: none;
+                        outline: none;
+                    }
+                }
+                
+                .cancel {
+                    font-size: 3.6vw;
+                    margin: 0 auto;
+                    color: $light-color;
+                }
+            }
+            
+            &.search {
+                border-bottom: solid thin $border;
+                padding-bottom: 3vw;
+            }
+        }
+    }
 </style>
 
 
 <script>
-    import TrandNormal from '@/views/TrandNormal.vue'
+    import TrendNormal from '@/views/TrendNormal.vue'
     import SearchModal from '@/views/SearchModal.vue'
 
     export default {
         name: 'trend',
         components: {
-            TrandNormal,
+            TrendNormal,
             SearchModal
         },
+        data() {
+            return {
+                keywords: ''
+            }
+        },
+        computed: {
+            search_flag() {
+                return this.$store.state.trend.search_flag
+            }
+        },
+        methods: {
+            click_search() {
+                this.$store.commit('trend/will_search')
+            },
+            clickCancel() {
+                this.$store.commit('trend/cancel_search')
+                this.keywords = ''
+            },
+            input_keyword() {
+                this.$store.commit('trend/display_pred', this.keywords)
+            }
+        }
     }
 
 </script>

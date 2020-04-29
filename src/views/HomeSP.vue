@@ -1,39 +1,42 @@
 <template>
     <div class="home-sp container">
         <div class="slide-wrapper">
-            <VideoShow :src="info[count%2].src"></VideoShow>
+            <VideoShow :src="video.src"></VideoShow>
             <div class="icon-wrapper">
-                <IconButton class="like" :icon="like.icon" :value="info[count%2].n_likes" @click="clickEval"></IconButton>
-                <IconButton class="comment" :icon="comments.icon" :value="info[count%2].n_comments"></IconButton>
-                <IconButton class="share" :icon="share.icon" :name="share.name"></IconButton>
+                <IconButton class="like" :icon="icons.like.icon" :value="video.n_likes" @ib_click="click_like" :class="{'with-color': video.this_audience.liked}" ></IconButton>
+                <IconButton class="comment" :icon="icons.comments.icon" :value="video.n_comments"></IconButton>
+                <IconButton class="share" :icon="icons.share.icon" :name="icons.share.name"></IconButton>
             </div>
         </div>
+        
         <div class="slide-info-wrapper">
-            <div class="title">{{ info[count].title }}</div>
+            <div class="title">{{ video.title }}</div>
             <div class="account-info">
-                <AvatarImage :src="info[count].image"></AvatarImage>
-                <div class="account-name">{{ info[count].name }}</div>
-                <TextButton :class="{'with-color': isntFollow}" @tbClick='toggleFollow' :name="fbText"></TextButton>
+                <AvatarImage :src="video.image"></AvatarImage>
+                <div class="account-name">{{ video.name }}</div>
+                <TextButton :class="{'with-color': !video.this_audience.followed}" @tbClick='click_follow' :name="fbText"></TextButton>
             </div>
         </div>
+        
         <div class="thumbnail-wrapper">
             <div class="wrapper-name">おすすめ</div>
             <div class="thumbnails">
-                <div v-for="(t, i) in thumbSrc" :key="i" class="item">
+                <div v-for="(t, i) in $store.state.home.recommend_thumbs" :key="i" class="item">
                     <Thumbnail :src="t.src" :title="t.title"></Thumbnail>
                 </div>
             </div>
         </div>
+        
         <div class="comment-wrapper">
             <div class="wrapper-name">コメント</div>
-            <InputBar placeholder="コメントを投稿" name="comment"></InputBar>
-            <div class="comment" v-for="(ci, i) in commentInfo" :key="i">
+            <textarea class="input-comment" placeholder="コメントを投稿" @change="change_comment" v-model="comment"></textarea>
+            <div class="comment" v-for="(c, i) in comments" :key="i">
                 <div class="left">
-                    <AvatarImage :src="ci.commentatorImage"></AvatarImage>
+                    <AvatarImage :src="c.image"></AvatarImage>
                 </div>
                 <div class="right">
-                    <div class="commentator">{{ ci.commentatorName}}</div>
-                    <div class="text">{{ ci.comment }}</div>
+                    <div class="commentator">{{ c.name }}</div>
+                    <div class="text">{{ c.comment }}</div>
                 </div>
             </div>
         </div>
@@ -45,7 +48,7 @@
     @media screen and (max-width: 767px) {
         .slide-wrapper {
             width: 100vw;
-            margin-bottom: 10px;
+            margin-bottom: 2.5vw;
             display: inline-block;
             text-align: center;
 
@@ -80,6 +83,7 @@
                 font-size: 20px;
                 margin-bottom: 10px;
                 letter-spacing: 0.06em;
+                color: $normal-color;
             }
 
             .account-info {
@@ -94,6 +98,7 @@
                     font-size: 12px;
                     letter-spacing: 0.03em;
                     float: left;
+                    color: $normal-color;
                 }
 
                 .text-button {
@@ -114,8 +119,9 @@
             padding: 5vw 0;
             
             .wrapper-name {
-                font-size: 15px;
+                font-size: 4vw;
                 margin: 0 0 3vw 3vw;
+                color: $normal-color;
             }
             
             .thumbnails {
@@ -145,18 +151,25 @@
             
             .wrapper-name {
                 margin-bottom: 3vw;
+                color: $normal-color;
+                font-size: 4vw;
             }
-            
-            .input-bar {
-                width: 310px;
+            .input-comment {
+                width: 65vw;
+                display: block;
                 margin: 0 auto 7vw;
+                font-size: 3.4vw;
+                padding: 3vw;
+                border: solid thin $border;
+                border-radius: 2.5vw;
+                height: 1em;
+                color: $normal-color;
+                line-height: 1.7;
                 
-                input {
-                    padding: 3vw;
-                    width: calc(100% - 3vw * 2);
-                    background: none;
-                    border: solid thin $border;
-                    -webkit-appearance: none;
+                &::placeholder {
+                    font-size: 3.4vw;
+                    color: $light-color;
+                    line-height: 1;
                 }
             }
             
@@ -192,7 +205,6 @@
     import TextButton from '@/components/TextButton.vue'
     import AvatarImage from '@/components/AvatarImage.vue'
     import Thumbnail from '@/components/Thumbnail.vue'
-    import InputBar from '@/components/InputBar.vue'
     import VideoShow from '@/components/VideoShow.vue'
 
     export default {
@@ -202,61 +214,47 @@
             TextButton,
             AvatarImage,
             Thumbnail,
-            InputBar,
             VideoShow
         },
         data() {
             return {
-                info: this.$store.state.homeSlides,
-                like: {
-                    icon: 'mdi-thumb-up-outline'
-                },
-                share: {
-                    icon: 'mdi-link',
-                    name: '共有'
-                },
-                comments: {
-                    icon: 'mdi-comment-processing-outline'
-                },
-                isntFollow: true,
-                fbText: 'フォローする',
-                thumbSrc: [
-                    {
-                        src: 'https://cdn.vuetifyjs.com/images/cards/store.jpg',
-                        title: 'ここにはスライドのタイトルが入ります'
+                icons: {
+                    like: {
+                        icon: 'mdi-thumb-up-outline'
                     },
-                    {
-                        src: 'https://cdn.vuetifyjs.com/images/cards/store.jpg',
-                        title: 'ここにはスライドのタイトルが入ります'
+                    share: {
+                        icon: 'mdi-link',
+                        name: '共有'
                     },
-                    {
-                        src: 'https://cdn.vuetifyjs.com/images/cards/store.jpg',
-                        title: 'ここにはスライドのタイトルが入ります'
-                    },
-                ],
-                commentInfo: [
-                    {
-                        commentatorImage: "https://cdn.vuetifyjs.com/images/john.jpg",
-                        commentatorName: '食べられそうなラー油',
-                        comment: '辛そうで辛くない、ちょっと辛いコメント'
+                    comments: {
+                        icon: 'mdi-comment-processing-outline'
                     }
-                ]
+                },
+                fbText: 'フォローする',
+                comment: ''
             }
         },
         computed: {
-            count() {
-                return this.$store.state.slideCount
+            video() {
+                let home = this.$store.state.home
+                return home.videos[home.video_count]
+            },
+            comments() {
+                return this.$store.state.home.comments
             }
         },
         methods: {
-            toggleFollow() {
-                this.isntFollow = !this.isntFollow
-
-                if (this.isntFollow) {
-                    this.fbText = 'フォローする'
-                } else {
-                    this.fbText = 'フォロー中'
+            click_follow() {
+                if (this.$store.state.userInfo.log_in) {
+                    this.$store.commit('home/toggle_follow')
+                    this.fbText = this.followed ? 'フォロー中' : 'フォローする'
                 }
+            },
+            change_comment() {
+                this.$store.commit('home/post_comment', this.comment)
+            },
+            click_like() {
+                this.$store.commit('home/click_like')
             }
         }
     }

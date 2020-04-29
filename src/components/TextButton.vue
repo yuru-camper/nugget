@@ -1,43 +1,44 @@
 <template>
-  <div class="text-button" @click="click">
-    {{ name }}
-  </div>
+    <div class="text-button" @click="click">
+        {{ name }}
+    </div>
 </template>
 
 
-<style>
-  .text-button {
-    text-align: center;
-    display: inline-block;
-    border: solid thin #ccc;
-    border-radius: 5px;
-    letter-spacing: 0.08em;
-  }
-  
-  .text-button:hover {
-    cursor: pointer;
-  }
-  
-  .with-color {
-    border: none;
-    background-color: #ffc814; 
-  }
+<style lang="scss">
+    .text-button {
+        text-align: center;
+        display: inline-block;
+        border: solid thin #ccc;
+        border-radius: 5px;
+        letter-spacing: 0.08em;
+
+        &:hover {
+            cursor: pointer;
+        }
+        
+        &.with-color {
+            border: none;
+            background-color: #ffc814;
+        }
+    }
 </style>
 
 
 <script>
-  export default {
-    props: {
-      name: {
-        type: String,
-        require: true,
-        default: 'BUTTON'
-      }
-    },
-    methods: {
-      click: function() {
-        this.$emit('tbClick')
-      }
+    export default {
+        props: {
+            name: {
+                type: String,
+                require: true,
+                default: 'BUTTON'
+            }
+        },
+        methods: {
+            click: function() {
+                this.$emit('tbClick')
+            }
+        }
     }
-  }
+
 </script>

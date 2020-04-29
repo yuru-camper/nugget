@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import MyPage from '../views/MyPage.vue'
 import NotLogIn from '../views/NotLogIn.vue'
+import ErrorPage from '../views/ErrorPage.vue'
 
 import EditProfile from '../views/rank1/EditProfile.vue'
 import MakeAccount from '../views/rank1/MakeAccount.vue'
@@ -54,6 +55,11 @@ const routes = [
         path: '/tagged-screen',
         name: 'tagged-screen',
         component: TaggedScreen
+    },
+    {
+        path: '/error-page',
+        name: 'error-page',
+        component: ErrorPage
     }
 ]
 

@@ -9,33 +9,32 @@
             </div>
             <div class="middle">
                 <div class="user-name">
-                    {{ userName }}
+                    {{ $store.state.mypage.name }}
                 </div>
                 <div class="user-id">
-                    @{{ userID }}
+                    @{{ $store.state.mypage.id }}
                 </div>
             </div>
             <div class="bottom">
                 <div class="bio">
-                    {{ bio }}
+                    {{ $store.state.mypage.bio }}
                 </div>
                 <IconButton icon="mdi-chevron-down"></IconButton>
             </div>
         </div>
         <div class="switch-bar">
-            <div @click="toNotifications" :class="{'show': showContents==='notifications'}">通知</div>
-            <div @click="toNageta" :class="{'show': showContents==='nageta'}">投稿</div>
-            <div @click="toGenius" :class="{'show': showContents==='genius'}">ジーニアス</div>
-            <div @click="toHistory" :class="{'show': showContents==='history'}">履歴</div>
+            <div v-for="(c, i) in $store.state.mypage.contents" :key="i" :class="{'show': $store.state.mypage.show_content == c}" @click="click_content(c)">
+                {{ c }}
+            </div>
         </div>
-        <div class="contents ntf-wrapper" v-if="showContents==='notifications'">
-            <div class="ntf" v-for="(n, i) in notifications" :key="i">
+        <div class="contents ntf-wrapper" v-if="is_notifications">
+            <div class="ntf" v-for="(n, i) in $store.state.mypage.notif" :key="i">
                 <div class="left">
-                    <AvatarImage :src="n.ntforImage"></AvatarImage>
+                    <AvatarImage :src="n.image"></AvatarImage>
                 </div>
                 <div class="right">
                     <div class="top">
-                        <div class="ntfor">{{ n.ntforName}}</div>
+                        <div class="ntfor">{{ n.name}}</div>
                         <div class="date">{{ n.date }}</div>
                     </div>
                     <div class="text">{{ n.content }}</div>
@@ -44,7 +43,7 @@
         </div>
         <div class="contents thumbnail-wrapper" v-else>
             <div class="thumbnails">
-                <div v-for="(t, i) in thumbSrc" :key="i" class="item">
+                <div v-for="(t, i) in $store.state.mypage.thumbSrc" :key="i" class="item">
                     <Thumbnail :src="t.src" :title="t.title"></Thumbnail>
                 </div>
             </div>
@@ -208,66 +207,14 @@
             IconButton,
             Thumbnail
         },
-        data() {
-            return {
-                userName: 'のび太さんのエッジ',
-                userID: 'nobitasedge',
-                bio: '「素人質問で申し訳ない」の対偶は「お灸をすえる玄人回答」',
-                showContents: 'notifications',
-                notifications: [
-                    {
-                        ntforImage: "https://cdn.vuetifyjs.com/images/john.jpg",
-                        ntforName: '食べられそうなラー油',
-                        date: '2020/3/16(月)',
-                        content: '辛いそうで辛くない、ちょっと辛いコメント'
-                    },
-                    {
-                        ntforImage: "https://cdn.vuetifyjs.com/images/john.jpg",
-                        ntforName: '食べられそうなラー油',
-                        date: '2020/3/16(月)',
-                        content: '辛いそうで辛くない、ちょっと辛いコメント'
-                    },
-                    {
-                        ntforImage: "https://cdn.vuetifyjs.com/images/john.jpg",
-                        ntforName: '食べられそうなラー油',
-                        date: '2020/3/16(月)',
-                        content: '辛いそうで辛くない、ちょっと辛いコメント'
-                    },
-                    {
-                        ntforImage: "https://cdn.vuetifyjs.com/images/john.jpg",
-                        ntforName: '食べられそうなラー油',
-                        date: '2020/3/16(月)',
-                        content: '辛いそうで辛くない、ちょっと辛いコメント'
-                    },
-                ],
-                thumbSrc: [
-                    {
-                        src: 'https://cdn.vuetifyjs.com/images/cards/store.jpg',
-                        title: 'ここにはスライドのタイトルが入ります'
-                    },
-                    {
-                        src: 'https://cdn.vuetifyjs.com/images/cards/store.jpg',
-                        title: 'ここにはスライドのタイトルが入ります'
-                    },
-                    {
-                        src: 'https://cdn.vuetifyjs.com/images/cards/store.jpg',
-                        title: 'ここにはスライドのタイトルが入ります'
-                    },
-                ]
+        computed: {
+            is_notifications() {
+                return this.$store.state.mypage.show_content === '通知'
             }
         },
         methods: {
-            toNotifications: function() {
-                this.showContents = 'notifications'
-            },
-            toNageta: function() {
-                this.showContents = 'nageta'
-            },
-            toGenius: function() {
-                this.showContents = 'genius'
-            },
-            toHistory: function() {
-                this.showContents = 'history'
+            click_content(content_name) {
+                this.$store.commit('mypage/switch_content', content_name)
             }
         }
     }

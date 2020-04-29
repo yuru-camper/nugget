@@ -19,22 +19,6 @@
     .video {
         position: relative;
         
-/*
-        .slide-enter-active {
-            transition: transform 1s;
-        }
-
-        .slide-enter {
-            transform: translateX(110vw);
-        }
-
-        .slide-leave-active {
-            transform: translateX(-100vw);
-            transition: transform 1s;
-            z-index: -101;
-        }
-*/
-        
         video {
             display: block;
             width: 100vw;
@@ -128,10 +112,10 @@
                 this.play = !this.play
             },
             toPrev() {
-                this.$store.commit('prev_slide')
+                this.$store.commit('home/prev_slide')
             },
             toNext() {
-                this.$store.commit('next_slide')
+                this.$store.commit('home/next_slide')
             }
         }
     }

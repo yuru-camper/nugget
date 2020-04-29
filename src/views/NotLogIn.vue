@@ -1,10 +1,10 @@
 <template>
     <div class="not-log-in">
+        <img src="@/assets/login-dog.png" alt="">
         <div class="explain">
             まだログインしていないため<br>
             マイページがありません
         </div>
-        <img src="@/assets/login-dog.png" alt="">
         <div class="buttons">
             <router-link to="/make-account">
                 <TextButton class="with-color" name="アカウントを作る"></TextButton>
@@ -19,16 +19,17 @@
 
 <style lang="scss">
     .not-log-in {
+        img {
+            display: block;
+            margin: 15vh auto 0;
+            width: 50vw;
+        }
+        
         .explain {
             font-size: 5vw;
             text-align: center;
-            margin-top: 20vh;
-        }
-        
-        img {
-            display: block;
-            margin: 3vw auto;
-            width: 50vw;
+            margin-top: 5vw;
+            color: $normal-color;
         }
         
         .buttons {

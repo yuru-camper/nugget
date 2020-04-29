@@ -121,7 +121,7 @@
         },
         computed: {
             tag() {
-                return this.$store.state.searchTag
+                return this.$store.state.trend.search_tag
             }
         }
     }
