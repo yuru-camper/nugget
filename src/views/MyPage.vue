@@ -85,11 +85,12 @@
                 .user-name {
                     font-size: 5vw;
                     margin-bottom: 0.2vw;
+                    color: $normal-color;
                 }
 
                 .user-id {
                     font-size: 3.4vw;
-                    color: #888888;
+                    color: $light-color;
                 }
             }
 

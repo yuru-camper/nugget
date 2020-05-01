@@ -1,14 +1,8 @@
 <template>
     <div id="footer">
-        <div class="link">
-            <router-link to="/">
-                <IconButton :icon="home.icon" :name="home.name"></IconButton>
-            </router-link>
-            <router-link to="/trend">
-                <IconButton :icon="trend.icon" :name="trend.name"></IconButton>
-            </router-link>
-            <router-link to="/my-page">
-                <IconButton :icon="mypage.icon" :name="mypage.name"></IconButton>
+        <div class="link" v-for="(i, j) in icons" :key="j" @click="click_icon(i.name)">
+            <router-link :to="i.url" :class="{clicked: i.name == clicked}">
+                <IconButton :icon="i.icon" :name="i.name"></IconButton>
             </router-link>
         </div>
     </div>
@@ -24,22 +18,34 @@
         border-top: solid thin #ccc;
         text-align: center;
 
+        .link {
+            display: contents;
+        }
+
         a {
-            margin: 0 10px;
+            margin: 0 2.8vw;
             font-weight: bold;
-            color: #888;
+            color: $light-color;
             text-decoration: none;
 
             &.router-link-exact-active {
-                color: #4d4d4d;
+                .icon-button {
+                    .mdi {
+                        color: $normal-color;
+                    }
+                    
+                    .text {
+                        color: $normal-color;
+                    }
+                }
             }
-            
+
             .icon-button {
                 width: 20vw;
-                font-size: 10px;
-                
+                font-size: 2.5vw;
+
                 .mdi {
-                    margin-bottom: -5px;
+                    margin-bottom: -1.2vw;
                 }
             }
         }
@@ -70,18 +76,29 @@
         },
         data() {
             return {
-                home: {
-                    icon: 'mdi-home',
-                    name: 'ホーム'
-                },
-                trend: {
-                    icon: 'mdi-magnify',
-                    name: 'トレンド'
-                },
-                mypage: {
-                    icon: 'mdi-account',
-                    name: 'マイページ'
-                }
+                icons: [
+                    {
+                        url: '/',
+                        icon: 'mdi-home',
+                        name: 'ホーム'
+                    },
+                    {
+                        url: '/trend',
+                        icon: 'mdi-magnify',
+                        name: 'トレンド'
+                    },
+                    {
+                        url: '/my-page',
+                        icon: 'mdi-account',
+                        name: 'マイページ'
+                    }
+                ],
+                clicked: 'ホーム'
+            }
+        },
+        methods: {
+            click_icon(name) {
+                this.clicked = name
             }
         }
     }
