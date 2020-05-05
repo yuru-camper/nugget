@@ -15,9 +15,14 @@ export default new Vuex.Store({
             name: '',
             id: '',
             image: ''
+        },
+        clicked_userID: ''
+    },
+    mutations: {
+        click_user(state, userID) {
+            state.clicked_userID = userID
         }
     },
-    mutations: {},
     actions: {},
     modules: {
         home,

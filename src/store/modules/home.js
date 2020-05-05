@@ -6,7 +6,8 @@ export default {
         comment: '',
         videos: [
             {
-                id: '',
+                videoID: '',
+                userID: 'tsibo',
                 src: require('../../assets/猫は液体なのか.mp4'),
                 title: '猫は液体なのか？物理学の盲点',
                 image: 'https://cdn.vuetifyjs.com/images/john.jpg',
@@ -20,11 +21,12 @@ export default {
                 }
             },
             {
-                id: '',
+                videoID: '',
+                userID: 'tsibo',
                 src: require('../../assets/動画.mp4'),
                 title: '0は自然数ということにしたい',
                 image: 'https://cdn.vuetifyjs.com/images/john.jpg',
-                name: '働きすぎたT細胞',
+                name: '働かないB細胞',
                 n_likes: 4321,
                 n_comments: 4321,
                 this_audience: {
@@ -38,7 +40,14 @@ export default {
             {
                 image: 'https://cdn.vuetifyjs.com/images/john.jpg',
                 name: '食べられそうなラー油',
-                comment: '辛そうで辛くない、ちょっと辛いコメント'
+                comment: '辛そうで辛くない、ちょっと辛いコメント',
+                id: 'karame'
+            },
+            {
+                image: 'https://cdn.vuetifyjs.com/images/john.jpg',
+                name: '食べられそうなラー油',
+                comment: '辛そうで辛くない、ちょっと辛いコメント',
+                id: 'karame'
             }
         ],
         recommend_thumbs: [
