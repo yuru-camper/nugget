@@ -3,7 +3,7 @@
         <transition name="slide">
             <video :src="src" ref="video" controls playsinline webkit-playsinline autoplay muted></video>
         </transition>
-        <transition name="t-overlay">
+        <transition name="t-overlay" @appear="appear_method">
             <div class="overlay" v-show="!play">
                 <IconButton class="left" icon="mdi-chevron-left"></IconButton>
                 <IconButton icon="mdi-play"></IconButton>
@@ -128,12 +128,12 @@
             toNext() {
                 this.$store.commit('home/next_slide')
             },
-            mounted_action() {
+            for_appear() {
                 this.play = true
+            },
+            appear_method() {
+                setTimeout(this.for_appear, 700)
             }
-        },
-        mounted() {
-            setTimeout(this.mounted_action, 700)
         }
     }
 
