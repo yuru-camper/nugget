@@ -53,7 +53,7 @@
                 font-size: 3.2vw;
                 margin-top: 1.5vw;
                 color: $light-color;
-                border-bottom: solid thin $light-color;
+                border-bottom: solid thin $border;
             }
         }
         
@@ -67,7 +67,7 @@
             }
             
             &.bottom {
-                padding: 2vw 4vw 2vw;
+                padding: 3vw 4vw 2.5vw;
                 border-radius: 1.5vw;
                 margin-bottom: 1vw;
             }

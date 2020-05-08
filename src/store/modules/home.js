@@ -44,6 +44,7 @@ export default {
                 }
             }
         ],
+        followed: false,
         comments: [
             {
                 image: 'https://cdn.vuetifyjs.com/images/john.jpg',

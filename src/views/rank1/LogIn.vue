@@ -18,7 +18,7 @@
                     パスワード
                 </div>
                 <div class="input">
-                    <input :type="passwordType" v-model="$store.state.login.inputs.mail_address">
+                    <input :type="passwordType" v-model="$store.state.login.inputs.password">
                     <div class="td-button" @click="toggleDisplay">
                         {{ tdText }}
                     </div>
@@ -114,12 +114,12 @@
         }
         
         .forgot {
-            font-size: 3.6vw;
+            font-size: 3.2vw;
             margin-top: 10vw;
             text-align: center;
             
             a {
-                border-bottom: solid thin $light-color;
+                border-bottom: solid thin $border;
                 color: $light-color;
                 padding-bottom: 0.2vw;
             }

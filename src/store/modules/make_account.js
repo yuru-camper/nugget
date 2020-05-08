@@ -5,7 +5,6 @@ export default {
         is_error: false,
         error_texts: {
             name: '',   // 表示名は1文字以上にしてください
-            confirm: '',  // パスワードが一致していません
             mail: ''    // 無効なメールアドレスです
         },
         inputs: {

@@ -27,6 +27,13 @@
                 <TextButton :class="{'with-color': !video.this_audience.followed}" @tbClick='click_follow' :name="fbText"></TextButton>
             </div>
             <div class="video-detail" :class="{show: show_detail}">
+
+                <div class="video-category">
+                    カテゴリー：
+                    <span class="category-link" @click="click_c_link(video.category)">
+                        {{ video.category }}
+                    </span>
+                </div>
                 <div class="tag-wrapper">
                     <div class="tags">
                         <div class="tag" v-for="(t, i) in video.tags" :key="i" @click="click_tag(t)">
@@ -51,7 +58,11 @@
 
         <div class="comment-wrapper">
             <div class="wrapper-name">コメント</div>
-            <textarea class="input-comment" placeholder="コメントを投稿" @change="change_comment" v-model="comment"></textarea>
+            <div class="input-area" v-show="$store.state.userInfo.log_in">
+                <AvatarImage></AvatarImage>
+                <textarea class="input-comment" placeholder="コメントを投稿" v-model="comment"></textarea>
+                <IconButton :class="{'can-send': comment}" icon="mdi-send" @click.native="post_comment"></IconButton>
+            </div>
             <div class="comment" v-for="(c, i) in comments" :key="i">
                 <div class="left">
                     <router-link :to="'/my-page/' + c.id" @click.native="click_user(c.id)">
@@ -111,18 +122,18 @@
                 color: $normal-color;
                 width: 86vw;
                 position: relative;
-                
+
                 .detail-btn {
                     position: absolute;
                     right: -8vw;
-                    top: -0.9vw;
+                    top: -0.3vw;
                     line-height: 1;
 
                     .mdi {
                         color: $light-color;
                         transition: 0.2s;
                     }
-                    
+
                     &.rotate .mdi {
                         transform: rotate(180deg);
                     }
@@ -167,9 +178,19 @@
 
             .video-detail {
                 display: none;
-                
+
                 &.show {
                     display: block;
+                }
+
+                .video-category {
+                    font-size: 3.2vw;
+                    margin-top: 5vw;
+                    color: $light-color;
+                    
+                    .category-link {
+                        border-bottom: solid thin $border;
+                    }
                 }
 
                 .tag-wrapper {
@@ -235,28 +256,56 @@
             padding: 5vw 0;
             border-top: solid thin #ccc;
 
+
+
             .wrapper-name {
                 margin-bottom: 3vw;
                 color: $normal-color;
                 font-size: 4vw;
             }
 
-            .input-comment {
-                width: 65vw;
-                display: block;
-                margin: 0 auto 7vw;
-                font-size: 3.4vw;
-                padding: 3vw;
-                border: solid thin $border;
-                border-radius: 2.5vw;
-                height: 1em;
-                color: $normal-color;
-                line-height: 1.7;
+            .input-area {
+                display: flex;
+                align-items: center;
+                margin-bottom: 8vw;
 
-                &::placeholder {
+                .avatar-image {
+                    width: 9vw;
+                    height: 9vw;
+                }
+
+                .input-comment {
+                    width: 65vw;
+                    display: block;
+                    margin: 0 4vw 0 2vw;
                     font-size: 3.4vw;
-                    color: $light-color;
-                    line-height: 1;
+                    padding: 3vw;
+                    border: solid thin $border;
+                    border-radius: 2.5vw;
+                    height: 1em;
+                    color: $normal-color;
+                    line-height: 1.7;
+
+                    &::placeholder {
+                        font-size: 3.4vw;
+                        color: $light-color;
+                        line-height: 1;
+                    }
+                }
+
+                .icon-button {
+                    .mdi {
+                        font-size: 6vw;
+                        height: 6vw;
+                        line-height: 1;
+                        color: $light-color;
+                    }
+
+                    &.can-send {
+                        .mdi {
+                            color: $brand-color;
+                        }
+                    }
                 }
             }
 
@@ -265,7 +314,7 @@
                 margin-bottom: 5vw;
 
                 .avatar-image {
-                    width: 35px;
+                    width: 9vw;
                 }
 
                 .right {
@@ -341,7 +390,7 @@
                     this.fbText = this.video.this_audience.followed ? 'フォロー中' : 'フォローする'
                 }
             },
-            change_comment() {
+            post_comment() {
                 this.$store.commit('home/post_comment', this.comment)
             },
             click_like() {
@@ -356,6 +405,10 @@
             click_tag(tag) {
                 this.$store.commit('trend/search_by_tag', tag)
                 this.$router.push('tagged-screen')
+            },
+            click_c_link(category) {
+                this.$router.push('trend')
+                this.$store.commit('trend/switch_category', category)
             }
         }
     }
