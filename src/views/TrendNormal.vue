@@ -38,7 +38,6 @@
 <style lang="scss">
     .trend-normal {
         .categories {
-            padding-top: 2.5vw;
             overflow-x: scroll;
             display: flex;
             background: $tabbar;
@@ -49,7 +48,7 @@
                 .item {
                     height: 3vw;
                     font-size: 3.4vw;
-                    padding: 0.7vw 5.5vw 0.3vw;
+                    padding: 3.2vw 5.5vw 0.3vw;
                     white-space: nowrap;
                     vertical-align: middle;
                     display: flex;

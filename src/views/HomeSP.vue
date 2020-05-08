@@ -12,7 +12,7 @@
         <div class="slide-info-wrapper">
             <div class="title" @click="click_detail_btn">
                 {{ video.title }}
-                <IconButton class="detail-btn" icon="mdi-chevron-down"></IconButton>
+                <IconButton class="detail-btn" icon="mdi-chevron-down" :class="{rotate: show_detail}"></IconButton>
             </div>
             <div class="views">
                 再生回数：{{ video.n_views }} 回
@@ -116,9 +116,15 @@
                     position: absolute;
                     right: -8vw;
                     top: -0.9vw;
+                    line-height: 1;
 
                     .mdi {
                         color: $light-color;
+                        transition: 0.2s;
+                    }
+                    
+                    &.rotate .mdi {
+                        transform: rotate(180deg);
                     }
                 }
             }

@@ -12,7 +12,7 @@
                 <div class="input">
                     <input type="text" v-model="$store.state.mkacc.inputs.name">
                 </div>
-                <div class="error-text" :class="{error: is_error}">
+                <div class="error-text">
                     {{ error_texts.name }}
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         {{ password_info[1].text }}
                     </div>
                 </div>
-                <div class="error-text" :class="{error: is_error}">
+                <div class="error-text">
                     {{ error_texts.confirm }}
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <div class="input">
                     <input type="email" v-model="$store.state.mkacc.inputs.mail_address">
                 </div>
-                <div class="error-text" :class="{error: is_error}">
+                <div class="error-text">
                     {{ error_texts.mail }}
                 </div>
             </div>
@@ -120,14 +120,9 @@
                 }
 
                 .error-text {
-                    display: none;
                     font-size: 3.2vw;
                     margin-top: 1vw;
                     color: $attention-color;
-
-                    &.error {
-                        display: block;
-                    }
                 }
             }
         }
