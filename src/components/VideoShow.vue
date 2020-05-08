@@ -1,7 +1,7 @@
 <template>
     <div class="video">
         <transition name="slide">
-            <video :src="src" ref="video" controls playsinline webkit-playsinline autoplay muted></video>
+            <video :src="src" ref="video" @ended="end_video" controls playsinline webkit-playsinline autoplay muted></video>
         </transition>
         <transition name="t-overlay" @appear="appear_method">
             <div class="overlay" v-show="!play">
@@ -133,6 +133,10 @@
             },
             appear_method() {
                 setTimeout(this.for_appear, 700)
+            },
+            end_video() {
+                this.$refs.video.currentTime = 0
+                this.$refs.video.play()
             }
         }
     }
