@@ -84,9 +84,6 @@ export default {
         ]
     },
     mutations: {
-        determine_keywords(state, keywords) {
-            state.keywords = keywords
-        },
         search_by_tag(state, clicked_tag) {
             state.search_tag = clicked_tag
         },
@@ -100,7 +97,7 @@ export default {
         switch_category(state, category) {
             state.now_category = category
         },
-        display_pred(state, keywords) {
+        input_keywords(state, keywords) {
             state.keywords = keywords
         }
     }
