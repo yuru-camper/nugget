@@ -2,7 +2,7 @@
     <div class="my-page-child">
         <div class="user-info">
             <div class="top">
-                <AvatarImage></AvatarImage>
+                <AvatarImage :src="$store.state.mypage.image"></AvatarImage>
                 <router-link to="/edit-profile" v-show="this_is_me">
                     <TextButton name="プロフィールを変更"></TextButton>
                 </router-link>
