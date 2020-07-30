@@ -53,11 +53,42 @@
                 }
             }
         }
-
     }
 
     @media screen and (min-width: 768px) {
+        .not-log-in {
+            img {
+                display: block;
+                margin: 150px auto 0;
+                width: 200px;
+            }
 
+            .explain {
+                font-size: 20px;
+                text-align: center;
+                margin-top: 30px;
+                color: $normal-color;
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: space-between;
+                margin: 80px auto;
+                width: 400px;
+
+                .text-button {
+                    display: block;
+                    padding: 10px 30px;
+                    margin: 0 auto;
+                    color: $normal-color;
+                    border-radius: 30px;
+
+                    &.with-color {
+                        color: white;
+                    }
+                }
+            }
+        }
     }
 </style>
 
