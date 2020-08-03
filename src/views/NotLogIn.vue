@@ -6,10 +6,10 @@
             マイページがありません
         </div>
         <div class="buttons">
-            <router-link to="/make-account">
+            <router-link to="/make-account" class="buttons__a">
                 <TextButton class="with-color" name="アカウントを作る"></TextButton>
             </router-link>
-            <router-link to="/log-in">
+            <router-link to="/log-in" class="buttons__a">
                 <TextButton name="ログインする"></TextButton>
             </router-link>
         </div>
@@ -74,14 +74,19 @@
                 display: flex;
                 justify-content: space-between;
                 margin: 80px auto;
-                width: 400px;
+                width: 500px;
+                
+                .buttons__a {
+                    text-decoration: none;
+                }
 
                 .text-button {
                     display: block;
-                    padding: 10px 30px;
+                    padding: 11px 30px 10px;
                     margin: 0 auto;
                     color: $normal-color;
                     border-radius: 30px;
+                    font-size: 20px;
 
                     &.with-color {
                         color: white;
