@@ -40,12 +40,20 @@
                 border-radius: 5px;
                 
                 .modal__close {
+                    position: absolute;
+                    background: rgba(0, 0, 0, 0.2);
+                    right: 2px;
+                    top: 2px;
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+
                     &::after, &::before {
                         content: '';
                         position: absolute;
                         width: 25px;
                         height: 2px;
-                        background: $normal-color;
+                        background: white;
                         top: 25px;
                         right: 15px;
                     }
