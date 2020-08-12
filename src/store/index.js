@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import createPersistedState from "vuex-persistedstate";
+
 import home from './modules/home'
 import trend from './modules/trend'
 import mypage from './modules/mypage'
@@ -11,21 +13,26 @@ import tagged_screen from './modules/tagged_screen'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-    state: {
-        userInfo: {
-            log_in: false,
-            name: 'のび太さんのエッジ',
-            id: 'nobitasedge',
-            image: '',
-            bio: '「素人質問で申し訳ない」の対偶は「お灸をすえる玄人回答」',
-            mail_address: 'info@nuggets.tokyo'
-        },
-        clicked_userID: ''
+export const initialState = {
+    userInfo: {
+        log_in: true,
+        name: 'のび太さんのエッジ',
+        id: 'nobitasedge',
+        image: '',
+        bio: '「素人質問で申し訳ない」の対偶は「お灸をすえる玄人回答」',
+        mail_address: 'info@nuggets.tokyo'
     },
+    clicked_userID: ''
+}
+
+export default new Vuex.Store({
+    state: initialState,
     mutations: {
         click_user(state, userID) {
             state.clicked_userID = userID
+        },
+        RESET_VUEX_STATE(state) {
+            Object.assign(state, JSON.parse(localStorage.getItem('initialState')));
         }
     },
     actions: {},
@@ -37,5 +44,6 @@ export default new Vuex.Store({
         mkacc: make_account,
         login,
         tagged_screen
-    }
+    },
+    plugins: [createPersistedState()]
 })
