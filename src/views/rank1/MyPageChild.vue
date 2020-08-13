@@ -6,6 +6,8 @@
                 <router-link to="/edit-profile" v-show="this_is_me">
                     プロフィールを変更
                 </router-link>
+                <IconButton icon="mdi-cog"></IconButton>
+<!--                <BaseModal>a</BaseModal>-->
             </div>
             <div class="middle">
                 <div class="user-name">
@@ -52,7 +54,7 @@
                         <div class="top">
                             <div class="name">{{ f.name }}</div>
                             <div class="id">{{ f.id }}</div>
-                            <div class="btn" @click="click_f_btn(i)" :class="{following: f.following}">
+                            <div class="btn" @click="click_f_btn(i)" :class="{following: f.following}" v-show="this_is_me">
                                 {{ fb_text(f.following) }}
                             </div>
                         </div>
@@ -309,6 +311,11 @@
                         margin: 0 0 10px 20px;
                         border-radius: 20px;
                     }
+                    
+                    .icon-button {
+                        font-size: 28px;
+                        margin: 0 0 10px 15px;
+                    }
                 }
                 
                 .middle {
@@ -500,14 +507,16 @@
 
 <script>
     import AvatarImage from '@/components/AvatarImage.vue'
-//    import IconButton from '@/components/IconButton.vue'
+    import IconButton from '@/components/IconButton.vue'
     import Thumbnail from '@/components/Thumbnail.vue'
+//    import BaseModal from '@/components/BaseModal.vue'
 
     export default {
         components: {
             AvatarImage,
-//            IconButton,
-            Thumbnail
+            IconButton,
+            Thumbnail,
+//            BaseModal
         },
         computed: {
             is_notifications() {
