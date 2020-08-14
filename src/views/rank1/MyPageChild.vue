@@ -6,8 +6,17 @@
                 <router-link to="/edit-profile" v-show="this_is_me">
                     プロフィールを変更
                 </router-link>
-                <IconButton icon="mdi-cog"></IconButton>
-<!--                <BaseModal>a</BaseModal>-->
+                <IconButton icon="mdi-cog" @click.native="click_open_modal"></IconButton>
+                <div class="modal--bg" v-if="modal_is_open" @click="click_close_modal">
+                    <div class="modal">
+                        <div class="modal__close" @click="click_close_modal"></div>
+                        <div class="modal__main">
+                            <div class="m__main__btn log-out" @click="click_log_out">
+                                ログアウトする
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="middle">
                 <div class="user-name">
@@ -163,6 +172,7 @@
 
                 .ntf-wrapper {
                     margin: 0 4vw;
+
                     .ntf {
                         display: flex;
                         border-bottom: solid thin #ccc;
@@ -216,10 +226,8 @@
                         .text {
                             .top {
                                 display: grid;
-                                grid: 
-                                    "name btn" 4vw
-                                    "id   btn" 4vw
-                                    / 1fr 28vw;
+                                grid:
+                                    "name btn"4vw "id   btn"4vw / 1fr 28vw;
                                 grid-row-gap: 1vw;
                                 grid-column-gap: 3vw;
 
@@ -286,23 +294,23 @@
                 }
             }
         }
-        
+
     }
-    
+
     @media screen and (min-width: 768px) {
         .my-page-child {
             padding-left: 210px;
             position: relative;
-            
+
             .user-info {
-                .top{
+                .top {
                     display: flex;
                     align-items: flex-end;
-                    
+
                     .avatar-image {
                         width: 150px;
                     }
-                    
+
                     a {
                         color: $light-color;
                         border: solid thin $light-color;
@@ -311,38 +319,98 @@
                         margin: 0 0 10px 20px;
                         border-radius: 20px;
                     }
-                    
+
                     .icon-button {
                         font-size: 28px;
                         margin: 0 0 10px 15px;
                     }
+                    
+                    .modal--bg {
+                        background: rgba(0, 0, 0, 0.2);
+                        position: absolute;
+                        top: -96px;
+                        left: calc(-8vw - 93px);
+                        width: 100vw;
+                        height: 100vh;
+                        
+                        .modal {
+                            background: white;
+                            width: 400px;
+                            margin: 20vh auto 0;
+                            color: $normal-color;
+                            position: relative;
+                            border-radius: 5px;
+                            
+                            .modal__close {
+                                position: absolute;
+                                background: rgba(0, 0, 0, 0.2);
+                                right: 2px;
+                                top: 2px;
+                                width: 35px;
+                                height: 35px;
+                                border-radius: 50%;
+                                cursor: pointer;
+
+                                &::after, &::before {
+                                    content: '';
+                                    position: absolute;
+                                    width: 21px;
+                                    height: 2px;
+                                    background: white;
+                                    top: 17px;
+                                    right: 7px;
+                                }
+
+                                &::after {
+                                    transform: rotate(45deg);
+                                }
+
+                                &::before {
+                                    transform: rotate(-45deg);
+                                }
+                            }
+                            
+                            .modal__main {
+                                padding: 45px 30px 20px;
+                                text-align: center;
+                                
+                                .m__main__btn {
+                                    cursor: pointer;
+                                    
+                                    &.log-out {
+                                        color: $attention-color;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-                
+
                 .middle {
                     position: absolute;
                     top: 10px;
                     left: calc(210px + 150px + 20px);
                     white-space: nowrap;
-                    
+
                     .user-name {
                         font-size: 25px;
                         color: $normal-color;
                         text-overflow: ellipsis;
                         -webkit-text-overflow: ellipsis;
                     }
-                    
+
                     .user-id {
                         font-size: 15px;
                         color: $light-color;
                     }
                 }
-                
+
                 .bottom {
                     font-size: 18px;
                     margin-top: 20px;
                 }
             }
-            
+
             .switch-bar {
                 display: inline-block;
                 font-size: 18px;
@@ -351,7 +419,7 @@
                 position: fixed;
                 top: 139px;
                 left: calc(8vw + 103px);
-                
+
                 .item {
                     padding: 5px 15px;
                     display: inline-block;
@@ -359,7 +427,7 @@
                     border-radius: 30px;
                     cursor: pointer;
                     margin: 5px 0;
-                    
+
                     &.show {
                         background: $brand-color;
                         color: white;
@@ -420,10 +488,8 @@
 
                             .top {
                                 display: grid;
-                                grid: 
-                                    "name btn" 22px
-                                    "id   btn" 16px
-                                    / 1fr 155px;
+                                grid:
+                                    "name btn"22px "id   btn"16px / 1fr 155px;
                                 grid-row-gap: 3px;
                                 grid-column-gap: 10px;
                                 white-space: nowrap;
@@ -475,20 +541,20 @@
                     width: calc(65vw - 150px);
                     max-width: 900px;
                     color: $normal-color;
-                    
+
                     .recommend-name {
                         font-size: 18px;
                     }
-                    
+
                     .thumbnails {
                         display: flex;
                         justify-content: space-between;
                         margin-bottom: 30px;
-                        
+
                         .thumbnail {
                             font-size: 15px;
                             margin-bottom: 15px;
-                            
+
                             img {
                                 width: calc((65vw - 150px) / 3.02);
                                 max-width: calc(900px / 3.02);
@@ -509,14 +575,19 @@
     import AvatarImage from '@/components/AvatarImage.vue'
     import IconButton from '@/components/IconButton.vue'
     import Thumbnail from '@/components/Thumbnail.vue'
-//    import BaseModal from '@/components/BaseModal.vue'
+    //    import BaseModal from '@/components/BaseModal.vue'
 
     export default {
         components: {
             AvatarImage,
             IconButton,
             Thumbnail,
-//            BaseModal
+            //            BaseModal
+        },
+        data() {
+            return {
+                modal_is_open: false
+            }
         },
         computed: {
             is_notifications() {
@@ -546,6 +617,16 @@
 
             fb_text(following) {
                 return following ? 'フォロー中' : 'フォローする'
+            },
+            click_open_modal() {
+                this.modal_is_open = true
+            },
+            click_close_modal() {
+                this.modal_is_open = false
+            },
+            click_log_out() {
+                this.$store.commit('RESET_VUEX_STATE')
+                this.$router.push('/')
             }
         },
         watch: {
