@@ -22,10 +22,95 @@
 
 
 <style lang="scss">
+    @media screen and (max-width: 767px) {
+        .promote-login-modal {
+            background: rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 99999;
+
+            .modal {
+                background: white;
+                width: 90vw;
+                margin: 20vh auto 0;
+                color: $normal-color;
+                position: relative;
+                border-radius: 5px;
+
+                .modal__close {
+                    position: absolute;
+                    background: rgba(0, 0, 0, 0.2);
+                    right: 3vw;
+                    top: 2vw;
+                    width: 8vw;
+                    height: 8vw;
+                    border-radius: 50%;
+                    cursor: pointer;
+
+                    &::after, &::before {
+                        content: '';
+                        position: absolute;
+                        width: 5vw;
+                        height: 0.5vw;
+                        background: white;
+                        top: 47%;
+                        left: 17%;
+                    }
+
+                    &::after {
+                        transform: rotate(45deg);
+                    }
+
+                    &::before {
+                        transform: rotate(-45deg);
+                    }
+                }
+
+                .modal__illustration {
+                    width: 100%;
+                }
+
+                .modal__main {
+                    padding: 10vw 5vw 1vw;
+
+                    .m__main__explain {
+                        font-size: 4vw;
+                    }
+
+                    .m__main__btns {
+                        a {
+                            width: 50vw;
+                            border-radius: 10vw;
+                            font-size: 3.6vw;
+                            padding: 2.5vw 0;
+                            text-align: center;
+                            display: block;
+                            margin: 5vw auto;
+                            text-decoration: none;
+
+                            &.make-acc {
+                                background: $brand-color;
+                                color: white;
+                            }
+
+                            &.log-in {
+                                border: solid thin $light-color;
+                                color: $normal-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     @media screen and (min-width: 768px) {
         .promote-login-modal {
             background: rgba(0, 0, 0, 0.2);
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100vw;

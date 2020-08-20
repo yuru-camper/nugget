@@ -364,6 +364,7 @@
         },
         methods: {
             click_follow() {
+                alert(this.$store.state.userInfo.log_in)
                 if (this.$store.state.userInfo.log_in) {
                     this.$store.commit('home/toggle_follow')
                     this.fbText = this.video.this_audience.followed ? 'フォロー中' : 'フォローする'

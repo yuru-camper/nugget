@@ -103,11 +103,84 @@
                     a {
                         margin-left: auto;
                         color: #888;
-
-                        .text-button {
-                            padding: 1vw 5vw;
-                            font-size: 3.4vw;
+                        padding: 1vw 5vw;
+                        font-size: 3.4vw;
+                        border: solid thin $light-color;
+                        border-radius: 5vw;
+                    }
+                    
+                    .icon-button {
+                        position: absolute;
+                        right: 4vw;
+                        top: 15vw;
+                        color: $normal-color;
+                        
+                        .mdi {
+                            font-size: 5vw;
+                        }
+                    }
+                    
+                    .modal--bg {
+                        background: rgba(0, 0, 0, 0.2);
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        display: flex;
+                        align-items: bottom;
+                        
+                        .modal {
+                            background: white;
+                            width: 100vw;
+                            margin: auto auto 0;
+                            color: $normal-color;
+                            position: relative;
                             border-radius: 5vw;
+                            
+                            .modal__close {
+                                position: absolute;
+                                background: rgba(0, 0, 0, 0.2);
+                                right: 4vw;
+                                top: 2vw;
+                                width: 8vw;
+                                height: 8vw;
+                                border-radius: 50%;
+                                cursor: pointer;
+
+                                &::after, &::before {
+                                    content: '';
+                                    position: absolute;
+                                    width: 5vw;
+                                    height: 0.5vw;
+                                    background: white;
+                                    top: 48%;
+                                    left: 20%;
+                                    
+                                }
+
+                                &::after {
+                                    transform: rotate(45deg);
+                                }
+
+                                &::before {
+                                    transform: rotate(-45deg);
+                                }
+                            }
+                            
+                            .modal__main {
+                                text-align: center;
+                                padding: 8vw 0 50vw;
+                                
+                                .m__main__btn {
+                                    display: inline;
+                                    font-size: 4vw;
+                                    
+                                    &.log-out {
+                                        color: $attention-color;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -327,9 +400,9 @@
                     
                     .modal--bg {
                         background: rgba(0, 0, 0, 0.2);
-                        position: absolute;
-                        top: -96px;
-                        left: calc(-8vw - 93px);
+                        position: fixed;
+                        top: 0;
+                        left: 0;
                         width: 100vw;
                         height: 100vh;
                         

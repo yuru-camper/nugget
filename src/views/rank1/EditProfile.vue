@@ -115,6 +115,7 @@
                     position: absolute;
                     top: 2px;
                     font-size: 18px;
+                    cursor: pointer;
                 }
 
                 .cancel {

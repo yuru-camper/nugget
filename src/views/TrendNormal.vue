@@ -42,6 +42,12 @@
                 overflow-x: scroll;
                 display: flex;
                 background: $tabbar;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                
+                &::-webkit-scrollbar {
+                    display: none;
+                }
 
                 .category {
                     display: inline-block;

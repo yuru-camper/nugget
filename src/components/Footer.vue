@@ -12,7 +12,7 @@
 <style lang="scss">
     #footer {
         width: 100%;
-        background-color: #fafafa;
+        background-color: $tabbar;
         position: fixed;
         bottom: 0;
         border-top: solid thin #ccc;
