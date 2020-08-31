@@ -5,6 +5,7 @@ import createPersistedState from "vuex-persistedstate";
 
 import home from './modules/home'
 import trend from './modules/trend'
+import upload_video from './modules/upload_video'
 import mypage from './modules/mypage'
 import common from './modules/common'
 import make_account from './modules/make_account'
@@ -15,7 +16,7 @@ Vue.use(Vuex)
 
 export const initialState = {
     userInfo: {
-        log_in: false,
+        log_in: true,
         name: 'のび太さんのエッジ',
         id: 'nobitasedge',
         image: '',
@@ -39,6 +40,7 @@ export default new Vuex.Store({
     modules: {
         home,
         trend,
+        upload_video,
         mypage,
         common,
         mkacc: make_account,

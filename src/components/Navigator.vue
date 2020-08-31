@@ -3,6 +3,7 @@
         <div class="navs">
             <router-link to="/">ホーム</router-link><br>
             <router-link to="/trend">トレンド</router-link><br>
+<!--            <router-link to="/upload-video">投稿</router-link><br>-->
             <router-link :to="this.$store.state.userInfo.log_in ? '/my-page/' + this.$store.state.userInfo.id : '/not-log-in'" @click.native="click_mypage">
                 マイページ
             </router-link>

@@ -6,7 +6,7 @@
                 <router-link to="/edit-profile" v-show="this_is_me">
                     プロフィールを変更
                 </router-link>
-                <IconButton icon="mdi-cog" @click.native="click_open_modal"></IconButton>
+                <IconButton icon="mdi-cog" @click.native="click_open_modal" v-show="this_is_me"></IconButton>
                 <div class="modal--bg" v-if="modal_is_open" @click="click_close_modal">
                     <div class="modal">
                         <div class="modal__close" @click="click_close_modal"></div>
@@ -22,8 +22,11 @@
                 <div class="user-name">
                     {{ $store.state.mypage.name }}
                 </div>
-                <div class="user-id">
+                <div class="user-id" v-if="this_is_me">
                     @{{ $store.state.mypage.id }}
+                </div>
+                <div class="user-id" v-else>
+                    @{{ $store.state.clicked_userID }}
                 </div>
             </div>
             <div class="bottom">
@@ -42,12 +45,12 @@
         <div class="contents">
             <div class="ntf-wrapper" v-if="is_notifications">
                 <div class="ntf" v-for="(n, i) in $store.state.mypage.notif" :key="i">
-                    <div class="left">
+                    <div class="left" @click="click_user_link(n.id)">
                         <AvatarImage :src="n.image"></AvatarImage>
                     </div>
                     <div class="right">
                         <div class="top">
-                            <div class="ntfor">{{ n.name }}</div>
+                            <div class="ntfor" @click="click_user_link(n.id)">{{ n.name }}</div>
                             <div class="date">{{ n.date }}</div>
                         </div>
                         <div class="text">{{ n.content }}</div>
@@ -56,13 +59,13 @@
             </div>
             <div class="follow-wrapper" v-else-if="is_follows">
                 <div class="follow" v-for="(f, i) in $store.state.mypage.follows" :key="i">
-                    <div class="image">
+                    <div class="image" @click="click_user_link(f.id)">
                         <AvatarImage :src="f.image"></AvatarImage>
                     </div>
                     <div class="text">
                         <div class="top">
-                            <div class="name">{{ f.name }}</div>
-                            <div class="id">{{ f.id }}</div>
+                            <div class="name" @click="click_user_link(f.id)">{{ f.name }}</div>
+                            <div class="id" @click="click_user_link(f.id)">@{{ f.id }}</div>
                             <div class="btn" @click="click_f_btn(i)" :class="{following: f.following}" v-show="this_is_me">
                                 {{ fb_text(f.following) }}
                             </div>
@@ -88,7 +91,7 @@
         .my-page-child {
             .user-info {
                 padding: 15vw 5vw 10vw;
-                background-color: #fafafa;
+                background-color: $tabbar;
 
                 .top {
                     height: 22vw;
@@ -223,7 +226,7 @@
                 border-top: solid thin $border;
                 overflow-x: scroll;
 
-                >div {
+                .item {
                     padding: 1.5vw 5.5vw 1.6vw;
                     white-space: nowrap;
                     border-bottom: solid thin $border;
@@ -700,6 +703,10 @@
             click_log_out() {
                 this.$store.commit('RESET_VUEX_STATE')
                 this.$router.push('/')
+            },
+            click_user_link(user_id) {
+                this.$store.commit('click_user', user_id)
+                this.$router.push('/my-page/' + user_id)
             }
         },
         watch: {

@@ -3,6 +3,11 @@
         <div class="video-and-info">
             <div class="video-wrapper">
                 <video :src="video.src" controls playsinline webkit-playsinline></video>
+                <div class="icon-wrapper">
+                    <IconButton class="like" :icon="icons.like.icon" :value="video.n_likes" @ib_click="click_like" :class="{'with-color': video.this_audience.liked}"></IconButton>
+                    <!--                <IconButton class="comment" :icon="icons.comments.icon" :value="video.n_comments"></IconButton>-->
+                    <IconButton class="share" :icon="icons.share.icon" :name="icons.share.name"></IconButton>
+                </div>
             </div>
 
             <div class="video-info-wrapper">
@@ -124,6 +129,33 @@
                         width: 450px;
                         height: 600px;
                         object-fit: cover;
+                    }
+                    
+                    .icon-wrapper {
+                        font-size: 16px;
+                        margin: 10px 0 0;
+                        color: $light-color;
+                        display: flex;
+                        text-align: center;
+                        justify-content: space-around;
+
+                        .icon-button {
+                            width: 50px;
+                            vertical-align: top;
+                            
+                            .mdi {
+                                font-size: 40px;
+                            }
+                            
+                            &.share .mdi {
+                                margin-bottom: -4px;
+                                display: block;
+                            }
+                            
+                            &.with-color .mdi {
+                                color: $brand-color;
+                            }
+                        }
                     }
                 }
 
