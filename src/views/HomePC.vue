@@ -1,5 +1,6 @@
 <template>
     <div class="home-pc container">
+        <PromoteLoginModal v-show="show_PLM" :do_text="PLM_do_text" @click_PLM_close="toggle_show_PLM"></PromoteLoginModal>
         <div class="video-and-info">
             <div class="video-wrapper">
                 <video :src="video.src" controls playsinline webkit-playsinline></video>
@@ -26,7 +27,6 @@
                         {{ video.name }}
                     </div>
                     <TextButton :class="{'with-color': !video.this_audience.followed}" @tbClick='click_follow' :name="fbText"></TextButton>
-                    <PromoteLoginModal v-show="show_follow_modal" do_text="このユーザーをフォロー" @click_PLM_close="toggle_SFM"></PromoteLoginModal>
                 </div>
                 <div class="video-detail" v-show="show_detail">
                     <div class="video-category">
@@ -387,7 +387,8 @@
                 fbText: 'フォローする',
                 comment: '',
                 show_detail: false,
-                show_follow_modal: false
+                show_PLM: false,
+                PLM_do_text: ''
             }
         },
         computed: {
@@ -405,7 +406,8 @@
                     this.$store.commit('home/toggle_follow')
                     this.fbText = this.video.this_audience.followed ? 'フォロー中' : 'フォローする'
                 } else {
-                    this.toggle_SFM();
+                    this.PLM_do_text = 'このユーザーをフォロー'
+                    this.toggle_show_PLM();
                 }
             },
             keyup_comment() {
@@ -417,7 +419,12 @@
                 document.getElementsByClassName('input-comment')[0].value = ''
             },
             click_like() {
-                this.$store.commit('home/click_like')
+                if (this.$store.state.userInfo.log_in) {
+                    this.$store.commit('home/click_like')
+                } else {
+                    this.PLM_do_text = 'この動画にナルホド'
+                    this.toggle_show_PLM();
+                }
             },
             click_user(userID) {
                 this.$store.commit('click_user', userID)
@@ -434,8 +441,8 @@
                 this.$router.push('trend')
                 this.$store.commit('trend/switch_category', category)
             },
-            toggle_SFM() {
-                this.show_follow_modal = !this.show_follow_modal
+            toggle_show_PLM() {
+                this.show_PLM = !this.show_PLM
             }
         }
     }

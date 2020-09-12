@@ -1,5 +1,9 @@
 <template>
     <div id="navigator">
+        <div class="logo">
+            <img src="@/assets/login-dog.png" alt="">
+            nugget
+        </div>
         <div class="navs">
             <router-link to="/">ホーム</router-link><br>
             <router-link to="/trend">トレンド</router-link><br>
@@ -18,6 +22,21 @@
         top: 0;
         left: 0;
         z-index: 9999;
+
+        .logo {
+            display: flex;
+            position: absolute;
+            top: 10px;
+            left: 40px;
+            font-size: 25px;
+            align-items: center;
+            color: $normal-color;
+
+            img {
+                width: 50px;
+                margin-right: 10px;
+            }
+        }
         
         .navs {
             background-color: $tabbar;
