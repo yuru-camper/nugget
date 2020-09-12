@@ -16,7 +16,7 @@ Vue.use(Vuex)
 
 export const initialState = {
     userInfo: {
-        log_in: true,
+        log_in: false,
         name: 'のび太さんのエッジ',
         id: 'nobitasedge',
         image: '',

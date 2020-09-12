@@ -2,7 +2,7 @@
     <div class="promote-login-modal">
         <div class="modal">
             <div class="modal__close" @click="click_close"></div>
-            <img src="" alt="" class="modal__illustration">
+            <img src="@/assets/gold.png" alt="" class="modal__illustration">
             <div class="modal__main">
                 <div class="m__main__explain">
                     アカウントを作ると、{{ do_text }}できます！
@@ -42,7 +42,7 @@
 
                 .modal__close {
                     position: absolute;
-                    background: rgba(0, 0, 0, 0.2);
+                    background: rgba(0, 0, 0, 0.4);
                     right: 3vw;
                     top: 2vw;
                     width: 8vw;
@@ -57,7 +57,7 @@
                         height: 0.5vw;
                         background: white;
                         top: 47%;
-                        left: 17%;
+                        left: 20%;
                     }
 
                     &::after {
@@ -74,7 +74,7 @@
                 }
 
                 .modal__main {
-                    padding: 10vw 5vw 1vw;
+                    padding: 3vw 5vw 1vw;
 
                     .m__main__explain {
                         font-size: 4vw;
@@ -107,7 +107,7 @@
         }
     }
     
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 767px) {
         .promote-login-modal {
             background: rgba(0, 0, 0, 0.2);
             position: fixed;
@@ -126,7 +126,7 @@
                 
                 .modal__close {
                     position: absolute;
-                    background: rgba(0, 0, 0, 0.2);
+                    background: rgba(0, 0, 0, 0.4);
                     right: 2px;
                     top: 2px;
                     width: 35px;

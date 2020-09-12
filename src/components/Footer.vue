@@ -23,8 +23,8 @@
         
         .wrapper {
             display: flex;
-            justify-content: space-between;
-            margin: 0 10vw;
+            justify-content: space-evenly;
+/*            margin: 0 10vw;*/
             
             .link {
                 display: contents;
@@ -34,6 +34,7 @@
                 font-weight: bold;
                 color: $light-color;
                 text-decoration: none;
+                width: 20vw;
 
                 &.router-link-exact-active {
                     .icon-button {
