@@ -168,6 +168,7 @@
                         width: 400px;
                         line-height: 1.2;
                         margin-bottom: 5px;
+                        color: $normal-color;
                         
                         .detail-btn {
                             position: absolute;
@@ -267,6 +268,7 @@
                 .wrapper-name {
                     font-size: 25px;
                     margin-bottom: 10px;
+                    color: $normal-color;
                 }
                 
                 .thumbnail-wrapper {

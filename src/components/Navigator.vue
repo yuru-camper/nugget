@@ -1,9 +1,9 @@
 <template>
     <div id="navigator">
-        <div class="logo">
-            <img src="@/assets/login-dog.png" alt="">
+        <router-link class="logo" to="/">
+            <img src="@/assets/logo.svg" alt="">
             nugget
-        </div>
+        </router-link>
         <div class="navs">
             <router-link to="/">ホーム</router-link><br>
             <router-link to="/trend">トレンド</router-link><br>
@@ -27,13 +27,14 @@
             display: flex;
             position: absolute;
             top: 10px;
-            left: 40px;
+            left: 50px;
             font-size: 25px;
             align-items: center;
             color: $normal-color;
+            text-decoration: none;
 
             img {
-                width: 50px;
+                width: 40px;
                 margin-right: 10px;
             }
         }
